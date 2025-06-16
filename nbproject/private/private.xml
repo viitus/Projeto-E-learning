@@ -3,15 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/victo/Desktop/UEMG/POO2/Projeto-E-learning/src/View/TelaAula.java</file>
-            <file>file:/C:/Users/victo/Desktop/UEMG/POO2/Projeto-E-learning/src/View/TelaCriaUsuario.java</file>
-            <file>file:/C:/Users/victo/Desktop/UEMG/POO2/Projeto-E-learning/src/View/TelaCriarAula.java</file>
             <file>file:/C:/Users/victo/Desktop/UEMG/POO2/Projeto-E-learning/src/View/TelaCursos.java</file>
-            <file>file:/C:/Users/victo/Desktop/UEMG/POO2/Projeto-E-learning/src/View/TelaGerenciarCursos.java</file>
-            <file>file:/C:/Users/victo/Desktop/UEMG/POO2/Projeto-E-learning/src/View/TelaInicial.java</file>
-            <file>file:/C:/Users/victo/Desktop/UEMG/POO2/Projeto-E-learning/src/View/TelaListaAulas.java</file>
-            <file>file:/C:/Users/victo/Desktop/UEMG/POO2/Projeto-E-learning/src/View/TelaLogin.java</file>
             <file>file:/C:/Users/victo/Desktop/UEMG/POO2/Projeto-E-learning/src/View/TelaBase.java</file>
+            <file>file:/C:/Users/victo/Desktop/UEMG/POO2/Projeto-E-learning/src/View/TelaAula.java</file>
+            <file>file:/C:/Users/victo/Desktop/UEMG/POO2/Projeto-E-learning/src/View/TelaCursosMatriculados.java</file>
         </group>
     </open-files>
 </project-private>
