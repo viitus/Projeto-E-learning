@@ -1,7 +1,7 @@
 package View;
 
 import Model.*;
-import Controller.CursoController;
+import Controller.*;
 
 public class TelaAula extends javax.swing.JFrame {
     
@@ -11,15 +11,19 @@ public class TelaAula extends javax.swing.JFrame {
     private Curso cursoSelecionado;
     private Aula aulaSelecionada;
     private CursoController cursoController;
+    private UsuarioController usuarioController;
     
-    public TelaAula(Usuario usuarioLogado, Curso cursoSelecionado, Aula aulaSelecionada, CursoController cursoController) {
-        initComponents();
+    public TelaAula(Usuario usuarioLogado, Curso cursoSelecionado, Aula aulaSelecionada, CursoController cursoController, UsuarioController usuarioController) {
+
         this.cursoController = cursoController;
         this.usuarioLogado = usuarioLogado;
         this.cursoSelecionado = cursoSelecionado;
         this.aulaSelecionada = aulaSelecionada;
-
+        this.usuarioController = usuarioController;
+        initComponents();
         carregarDadosAula();
+        TelaBase.padronizarJanela(this);
+        TelaBase.padronizarTextAreas(this.getContentPane());
     }
     
     private void carregarDadosAula() {
@@ -37,8 +41,6 @@ public class TelaAula extends javax.swing.JFrame {
         jtxtConteudo = new javax.swing.JTextArea();
         jbtnVoltar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jlblTituloAula.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jlblTituloAula.setText("Aula");
 
@@ -46,6 +48,7 @@ public class TelaAula extends javax.swing.JFrame {
         jtxtConteudo.setRows(5);
         jScrollPane1.setViewportView(jtxtConteudo);
 
+        jbtnVoltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbtnVoltar.setText("Voltar");
         jbtnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,13 +64,14 @@ public class TelaAula extends javax.swing.JFrame {
                 .addComponent(jbtnVoltar)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlblTituloAula)
-                .addGap(242, 242, 242))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(254, 254, 254)
+                        .addComponent(jlblTituloAula)))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,7 +81,7 @@ public class TelaAula extends javax.swing.JFrame {
                 .addComponent(jlblTituloAula)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -85,7 +89,7 @@ public class TelaAula extends javax.swing.JFrame {
 
     private void jbtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVoltarActionPerformed
         this.dispose();
-        new TelaInicial(usuarioLogado, cursoController).setVisible(true);
+        new TelaInicial(usuarioLogado, cursoController, usuarioController).setVisible(true);
     }//GEN-LAST:event_jbtnVoltarActionPerformed
 
 

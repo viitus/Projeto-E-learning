@@ -9,13 +9,16 @@ public class TelaCriaUsuario extends javax.swing.JFrame {
 
     private Usuario usuarioLogado;
     private Controller.CursoController cursoController;
+    private Controller.UsuarioController usuarioController;
 
-    public TelaCriaUsuario(Usuario usuario, Controller.CursoController cursoController) {
-        initComponents();
+    public TelaCriaUsuario(Usuario usuario, Controller.CursoController cursoController, Controller.UsuarioController usuarioController) {
+       
+        this.usuarioController = usuarioController;
         this.cursoController = cursoController;
         this.usuarioLogado = usuario;
+        initComponents();
+        TelaBase.padronizarJanela(this);
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -31,14 +34,18 @@ public class TelaCriaUsuario extends javax.swing.JFrame {
         jtxtNome = new javax.swing.JTextField();
         jbtnCriar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Nome:");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Senha:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Tipo:");
 
+        jtxtSenha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jbtnVoltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbtnVoltar.setText("Voltar");
         jbtnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,8 +56,12 @@ public class TelaCriaUsuario extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setText("Criar Novo Usuário");
 
+        jcbTipo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jcbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "aluno", "professor", "admin" }));
 
+        jtxtNome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jbtnCriar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbtnCriar.setText("Criar");
         jbtnCriar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,30 +75,26 @@ public class TelaCriaUsuario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jbtnVoltar)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 421, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addGap(142, 142, 142)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jtxtNome))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jtxtSenha)
-                                        .addComponent(jcbTipo, 0, 129, Short.MAX_VALUE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(18, 18, 18)
+                            .addComponent(jtxtNome))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jtxtSenha)
+                                .addComponent(jcbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jbtnCriar, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,16 +107,16 @@ public class TelaCriaUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jtxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jtxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jcbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtnCriar)
-                .addGap(23, 23, 23))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         pack();
@@ -117,7 +124,7 @@ public class TelaCriaUsuario extends javax.swing.JFrame {
 
     private void jbtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVoltarActionPerformed
         this.dispose();
-        new TelaInicial(usuarioLogado, cursoController).setVisible(true);
+        new TelaInicial(usuarioLogado, cursoController, usuarioController).setVisible(true);
     }//GEN-LAST:event_jbtnVoltarActionPerformed
 
     private void jbtnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCriarActionPerformed
@@ -131,9 +138,19 @@ public class TelaCriaUsuario extends javax.swing.JFrame {
         }
 
         Model.Usuario novoUsuario = new Model.Usuario(nome, nome, senha, tipo);
-        // Aqui você pode salvar no banco, ou em uma lista se for mockado
+
+        if (usuarioController.buscarUsuario(nome) != null) {
+            JOptionPane.showMessageDialog(this, "Usuário já existe.");
+            return;
+        }
+
+        usuarioController.adicionarUsuario(novoUsuario);
+        usuarioController.salvarUsuarios();
+
         JOptionPane.showMessageDialog(this, "Usuário criado com sucesso!");
         this.dispose();
+        new TelaInicial(usuarioLogado, cursoController, usuarioController).setVisible(true);
+
     }//GEN-LAST:event_jbtnCriarActionPerformed
 
 

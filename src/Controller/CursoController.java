@@ -1,50 +1,54 @@
 package Controller;
 
-import Model.Aula;
+import Model.Curso;
+import Util.PersistenciaJson;
 import java.util.ArrayList;
 import java.util.List;
-import Model.Curso;
 
 public class CursoController {
     private List<Curso> cursos;
+    private final String arquivo = "cursos.json";
 
-    public CursoController(){
-        cursos = new ArrayList<>();
-        inicializarCursosFixos();
+    public CursoController() {
+        cursos = PersistenciaJson.carregarCursos(arquivo);
     }
-    
-    private void inicializarCursosFixos() {
-        Curso cursoJava = new Curso("Java Básico", "Aprenda os fundamentos do Java");
-        cursoJava.adicionarAula(new Aula("Introdução ao Java", "Conteúdo da aula 1"));
-        cursoJava.adicionarAula(new Aula("Tipos de dados", "Conteúdo da aula 2"));
-        
-        Curso cursoLogica = new Curso("Lógica de Programação", "Conceitos de lógica e algoritmos");
-        cursoLogica.adicionarAula(new Aula("Algoritmos Básicos", "Conteúdo da aula 1"));
-        
-        cursos.add(cursoJava);
-        cursos.add(cursoLogica);
-        cursos.add(new Curso("Banco de Dados", "Introdução ao SQL e modelagem"));
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+        salvarCursos();
     }
 
     public void adicionarCurso(Curso curso) {
         cursos.add(curso);
-    }
-
-    public void removerCurso(int index) {
-        if (index >= 0 && index < cursos.size()) {
-            cursos.remove(index);
-        }
+        salvarCursos();
     }
 
     public void editarCurso(int index, String novoNome, String novaDescricao) {
-        if (index >= 0 && index < cursos.size()) {
-            Curso curso = cursos.get(index);
-            curso.setNome(novoNome);
-            curso.setDescricao(novaDescricao);
+        Curso curso = cursos.get(index);
+        curso.setNome(novoNome);
+        curso.setDescricao(novaDescricao);
+        salvarCursos();
+    }
+    
+    public Curso buscarCurso(String nome) {
+        for (Curso curso : cursos) {
+            if (curso.getNome().equalsIgnoreCase(nome)) {
+                return curso;
+            }
         }
+        return null;
     }
 
-    public List<Curso> getCursos(){
-        return cursos;
+    public void removerCurso(int index) {
+        cursos.remove(index);
+        salvarCursos();
     }
-}
+
+    public void salvarCursos() {
+        PersistenciaJson.salvarCursos(cursos, arquivo);
+    }
+} 

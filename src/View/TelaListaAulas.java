@@ -2,7 +2,7 @@ package View;
 
 import Model.*;
 import javax.swing.*;
-import Controller.CursoController;
+import Controller.*;
 
 public class TelaListaAulas extends javax.swing.JFrame {
     
@@ -11,13 +11,18 @@ public class TelaListaAulas extends javax.swing.JFrame {
     private CursoController cursoController;
     private final Usuario usuarioLogado;
     private final Curso cursoSelecionado;
+    private UsuarioController usuarioController;
     
-    public TelaListaAulas(Usuario usuario, Curso curso, CursoController cursoController) {
+    public TelaListaAulas(Usuario usuario, Curso curso, CursoController cursoController, UsuarioController usuarioController) {
+      
         this.usuarioLogado = usuario;
         this.cursoSelecionado = curso;
+        this.usuarioController = usuarioController;
         this.cursoController = cursoController;
         initComponents();
         carregarAulas();
+        TelaBase.padronizarJanela(this);
+        TelaBase.padronizarTextAreas(this.getContentPane());
     }
 
     private void carregarAulas() {
@@ -37,8 +42,7 @@ public class TelaListaAulas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jlstAulas = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+        jbtnVoltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbtnVoltar.setText("Voltar");
         jbtnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,6 +50,7 @@ public class TelaListaAulas extends javax.swing.JFrame {
             }
         });
 
+        jbtnAcessar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbtnAcessar.setText("Acessar");
         jbtnAcessar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,27 +71,25 @@ public class TelaListaAulas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnVoltar)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbtnVoltar)
-                        .addGap(73, 73, 73)
-                        .addComponent(jbtnAcessar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                        .addGap(108, 108, 108)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(120, 120, 120)
+                                .addComponent(jbtnAcessar))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbtnVoltar)
-                        .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbtnAcessar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jbtnVoltar)
+                .addGap(10, 10, 10)
+                .addComponent(jbtnAcessar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         pack();
@@ -94,7 +97,7 @@ public class TelaListaAulas extends javax.swing.JFrame {
 
     private void jbtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVoltarActionPerformed
         this.dispose();
-        new TelaInicial(usuarioLogado, cursoController).setVisible(true);
+        new TelaInicial(usuarioLogado, cursoController, usuarioController).setVisible(true);
     }//GEN-LAST:event_jbtnVoltarActionPerformed
 
     private void jbtnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAcessarActionPerformed
@@ -105,7 +108,7 @@ public class TelaListaAulas extends javax.swing.JFrame {
         }
 
         Aula aulaSelecionada = cursoSelecionado.getAulas().get(index);
-        new TelaAula(usuarioLogado, cursoSelecionado, aulaSelecionada, cursoController).setVisible(true);
+        new TelaAula(usuarioLogado, cursoSelecionado, aulaSelecionada, cursoController, usuarioController).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbtnAcessarActionPerformed
 

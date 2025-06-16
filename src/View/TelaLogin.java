@@ -5,14 +5,18 @@ import Controller.*;
 import Model.Usuario;
 
 
-public class TelaLogin extends javax.swing.JFrame {
+public class TelaLogin extends javax.swing.JFrame{
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaLogin.class.getName());
     private CursoController cursoController;
+    private UsuarioController usuarioController;
     
-    public TelaLogin(CursoController cursoController) {
+    public TelaLogin(CursoController cursoController, UsuarioController usuarioController) {
+     
         this.cursoController = cursoController;
+        this.usuarioController = usuarioController;
         initComponents();
+        TelaBase.padronizarJanela(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -24,15 +28,21 @@ public class TelaLogin extends javax.swing.JFrame {
         jTFlogin = new javax.swing.JTextField();
         jBentrar = new javax.swing.JButton();
         jPFsenha = new javax.swing.JPasswordField();
+        jbtnFechar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(300, 200));
+        setSize(new java.awt.Dimension(600, 400));
 
+        jLSenha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLSenha.setText("Senha");
 
+        jLlogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLlogin.setText("Login");
 
         jTFlogin.setColumns(10);
+        jTFlogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jBentrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jBentrar.setText("Entrar");
         jBentrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -41,37 +51,49 @@ public class TelaLogin extends javax.swing.JFrame {
         });
 
         jPFsenha.setColumns(10);
+        jPFsenha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jbtnFechar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jbtnFechar.setText("Fechar");
+        jbtnFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnFecharActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(136, 136, 136)
+                .addGap(157, 157, 157)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLlogin)
                     .addComponent(jLSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBentrar)
-                    .addComponent(jTFlogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPFsenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbtnFechar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTFlogin)
+                    .addComponent(jPFsenha)
+                    .addComponent(jBentrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLlogin)
-                    .addComponent(jTFlogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(117, 117, 117)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTFlogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLlogin, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLSenha)
                     .addComponent(jPFsenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBentrar)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnFechar)
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         pack();
@@ -81,12 +103,11 @@ public class TelaLogin extends javax.swing.JFrame {
         String login = jTFlogin.getText();
         String senha = new String(jPFsenha.getPassword());
         
-        UsuarioController uc = new UsuarioController();
-        Usuario usuario = uc.autenticar(login, senha);
+        Usuario usuario = usuarioController.autenticar(login, senha);
         
         if (usuario != null) {
             JOptionPane.showMessageDialog(this, "Bem-vindo, " + usuario.getNome() + " (" + usuario.getTipo() + ")");
-            TelaInicial tela = new TelaInicial(usuario, cursoController);
+            TelaInicial tela = new TelaInicial(usuario, cursoController, usuarioController);
             tela.setVisible(true);
             this.dispose();
         } else {
@@ -94,8 +115,11 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBentrarActionPerformed
 
+    private void jbtnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnFecharActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jbtnFecharActionPerformed
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -111,9 +135,6 @@ public class TelaLogin extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        //java.awt.EventQueue.invokeLater(() -> new TelaLogin().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -122,5 +143,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLlogin;
     private javax.swing.JPasswordField jPFsenha;
     private javax.swing.JTextField jTFlogin;
+    private javax.swing.JButton jbtnFechar;
     // End of variables declaration//GEN-END:variables
 }

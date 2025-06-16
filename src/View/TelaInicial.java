@@ -9,14 +9,16 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private Usuario usuarioLogado;
     private Controller.CursoController cursoController;
+    private Controller.UsuarioController usuarioController;
     
-    
-    public TelaInicial(Usuario usuario, Controller.CursoController cursoController) {
-        initComponents();
+    public TelaInicial(Usuario usuario, Controller.CursoController cursoController, Controller.UsuarioController usuarioController) {
+   
+        this.usuarioController = usuarioController;
         this.cursoController = cursoController;
         this.usuarioLogado = usuario;
+        initComponents();
         aplicarPermissoes();
-        setTitle("Sistema E-Learning - "+ usuarioLogado.getTipo());
+        TelaBase.padronizarJanela(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -27,16 +29,21 @@ public class TelaInicial extends javax.swing.JFrame {
         jbtnGerenciarCursos = new javax.swing.JButton();
         jbtnCriarUsuario = new javax.swing.JButton();
         jbtnLogoff = new javax.swing.JButton();
+        jbtnCursosMatriculados = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(300, 200));
+        setLocationByPlatform(true);
+        setSize(new java.awt.Dimension(600, 400));
 
-        btnVerCursos.setText("Ver Cursos");
+        btnVerCursos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnVerCursos.setText("Ver Cursos Disponiveis");
         btnVerCursos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerCursosActionPerformed(evt);
             }
         });
 
+        jbtnGerenciarCursos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbtnGerenciarCursos.setText("Gerenciar Cursos");
         jbtnGerenciarCursos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,6 +51,7 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
+        jbtnCriarUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbtnCriarUsuario.setText("Criar Usuário");
         jbtnCriarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,10 +59,19 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
+        jbtnLogoff.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbtnLogoff.setText("Logoff");
         jbtnLogoff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnLogoffActionPerformed(evt);
+            }
+        });
+
+        jbtnCursosMatriculados.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jbtnCursosMatriculados.setText("Cursos Matriculados");
+        jbtnCursosMatriculados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnCursosMatriculadosActionPerformed(evt);
             }
         });
 
@@ -63,45 +80,47 @@ public class TelaInicial extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbtnCriarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jbtnGerenciarCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVerCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(146, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(jbtnLogoff)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 486, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(174, 174, 174)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jbtnGerenciarCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVerCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtnCriarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtnCursosMatriculados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jbtnLogoff)
-                .addGap(67, 67, 67)
+                .addGap(38, 38, 38)
+                .addComponent(jbtnCursosMatriculados)
+                .addGap(18, 18, 18)
                 .addComponent(btnVerCursos)
                 .addGap(18, 18, 18)
                 .addComponent(jbtnGerenciarCursos)
                 .addGap(18, 18, 18)
                 .addComponent(jbtnCriarUsuario)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVerCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCursosActionPerformed
-        TelaCursos tela = new TelaCursos(usuarioLogado, cursoController);
+        TelaCursos tela = new TelaCursos(usuarioLogado, cursoController, usuarioController);
         tela.setVisible(true);
     }//GEN-LAST:event_btnVerCursosActionPerformed
 
     private void jbtnGerenciarCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGerenciarCursosActionPerformed
-        TelaGerenciarCursos tela = new TelaGerenciarCursos(usuarioLogado, cursoController);
+        TelaGerenciarCursos tela = new TelaGerenciarCursos(usuarioLogado, cursoController, usuarioController);
         tela.setVisible(true);
     }//GEN-LAST:event_jbtnGerenciarCursosActionPerformed
 
     private void jbtnCriarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCriarUsuarioActionPerformed
-        TelaCriaUsuario tela = new TelaCriaUsuario(usuarioLogado, cursoController);
+        TelaCriaUsuario tela = new TelaCriaUsuario(usuarioLogado, cursoController, usuarioController);
         tela.setVisible(true);
     }//GEN-LAST:event_jbtnCriarUsuarioActionPerformed
 
@@ -109,25 +128,29 @@ public class TelaInicial extends javax.swing.JFrame {
         int resposta = JOptionPane.showConfirmDialog(this, "Deseja realmente sair?", "Confirmar Logoff", JOptionPane.YES_NO_OPTION);
         if (resposta == JOptionPane.YES_OPTION) {
             this.dispose();
-            new TelaLogin(cursoController).setVisible(true);
+            new TelaLogin(cursoController, usuarioController).setVisible(true);
         }
     }//GEN-LAST:event_jbtnLogoffActionPerformed
+
+    private void jbtnCursosMatriculadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCursosMatriculadosActionPerformed
+        TelaCursosMatriculados tela = new TelaCursosMatriculados(usuarioLogado, cursoController, usuarioController);
+        tela.setVisible(true);
+    }//GEN-LAST:event_jbtnCursosMatriculadosActionPerformed
 
     private void aplicarPermissoes() {
         String tipo = usuarioLogado.getTipo();
         if (tipo.equals("aluno")) {
             jbtnGerenciarCursos.setVisible(false);
         }
-        if (tipo.equals("admin")) {
-            jbtnCriarUsuario.setVisible(true);
+        if (!tipo.equals("admin")) {
+            jbtnCriarUsuario.setVisible(false);
+        }
+        if (tipo.equals("professor")) {
+            jbtnCursosMatriculados.setVisible(false);
         }
     }
-
-    
-    
     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -143,14 +166,12 @@ public class TelaInicial extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        //java.awt.EventQueue.invokeLater(() -> new TelaInicial().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVerCursos;
     private javax.swing.JButton jbtnCriarUsuario;
+    private javax.swing.JButton jbtnCursosMatriculados;
     private javax.swing.JButton jbtnGerenciarCursos;
     private javax.swing.JButton jbtnLogoff;
     // End of variables declaration//GEN-END:variables

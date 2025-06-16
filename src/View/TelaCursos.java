@@ -3,23 +3,27 @@ package View;
 import javax.swing.*;
 import Model.Aula;
 import Model.Curso;
-import Controller.CursoController;
+import Controller.*;
 
 public class TelaCursos extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCursos.class.getName());
     
+    private UsuarioController usuarioController;
     private Model.Usuario usuarioLogado;
     private CursoController cursoController;
     private Curso cursoSelecionado;
     
-    public TelaCursos(Model.Usuario usuario, CursoController cursoController) {
-        initComponents();
+    public TelaCursos(Model.Usuario usuario, CursoController cursoController, UsuarioController usuarioController) {
+    
         this.usuarioLogado = usuario;
+        this.usuarioController = usuarioController;
         this.cursoController = cursoController;
+        initComponents();
         carregarCursos();
         aplicarPermissoes();
         configurarSelecaoLista();
+        TelaBase.padronizarJanela(this);
     }
 
     private void configurarSelecaoLista() {
@@ -43,8 +47,6 @@ public class TelaCursos extends javax.swing.JFrame {
         jbtnAcessar = new javax.swing.JButton();
         jbtnVoltar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Cursos Disponíveis ");
 
@@ -55,6 +57,7 @@ public class TelaCursos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jlstCursos);
 
+        jbtnMatricular.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbtnMatricular.setText("Matricular");
         jbtnMatricular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +65,7 @@ public class TelaCursos extends javax.swing.JFrame {
             }
         });
 
+        jbtnAcessar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbtnAcessar.setText("Acessar Aula");
         jbtnAcessar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,6 +73,7 @@ public class TelaCursos extends javax.swing.JFrame {
             }
         });
 
+        jbtnVoltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbtnVoltar.setText("Voltar");
         jbtnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,12 +91,11 @@ public class TelaCursos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jbtnMatricular, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(142, 142, 142)
-                            .addComponent(jbtnAcessar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbtnMatricular, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(107, 107, 107)
+                        .addComponent(jbtnAcessar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(82, 82, 82)))
@@ -101,7 +105,7 @@ public class TelaCursos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jbtnVoltar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,10 +128,11 @@ public class TelaCursos extends javax.swing.JFrame {
         
         Model.Curso cursoSelecionado = cursoController.getCursos().get(index);
         
-        if (usuarioLogado.getTipo().equals("aluno") || usuarioLogado.getTipo().equals("admin")) {
+        if (!usuarioLogado.getTipo().equals("professor")) {
             boolean matriculado = usuarioLogado.matricularEmCurso(cursoSelecionado);
             if (matriculado) {
                 JOptionPane.showMessageDialog(this, "Matrícula realizada com sucesso no curso: " + cursoSelecionado.getNome());
+                usuarioController.salvarUsuarios();
             } else {
                 JOptionPane.showMessageDialog(this, "Você já está matriculado nesse curso.");
             }
@@ -138,7 +143,7 @@ public class TelaCursos extends javax.swing.JFrame {
 
     private void jbtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVoltarActionPerformed
         this.dispose();
-        new TelaInicial(usuarioLogado, cursoController).setVisible(true);
+        new TelaInicial(usuarioLogado, cursoController, usuarioController).setVisible(true);
     }//GEN-LAST:event_jbtnVoltarActionPerformed
 
     private void jbtnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAcessarActionPerformed
@@ -150,7 +155,7 @@ public class TelaCursos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Este curso ainda não possui aulas.");
             return;
         }
-        new TelaListaAulas(usuarioLogado, cursoSelecionado, cursoController).setVisible(true);
+        new TelaListaAulas(usuarioLogado, cursoSelecionado, cursoController, usuarioController).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbtnAcessarActionPerformed
 

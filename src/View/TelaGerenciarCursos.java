@@ -10,12 +10,17 @@ public class TelaGerenciarCursos extends javax.swing.JFrame {
 
     private Controller.CursoController cursoController;
     private Model.Usuario usuarioLogado;
+    private Controller.UsuarioController usuarioController;
 
-    public TelaGerenciarCursos(Model.Usuario usuario, CursoController cursoController) {
-        initComponents();
+    public TelaGerenciarCursos(Model.Usuario usuario, CursoController cursoController, Controller.UsuarioController usuarioController) {
+      
+        this.usuarioController = usuarioController;
         this.usuarioLogado = usuario;
         this.cursoController = cursoController;
+        initComponents();
         carregarCursos();
+        TelaBase.padronizarJanela(this);
+        TelaBase.padronizarTextAreas(this.getContentPane());
     }
 
     @SuppressWarnings("unchecked")
@@ -34,8 +39,6 @@ public class TelaGerenciarCursos extends javax.swing.JFrame {
         jbtnEditar = new javax.swing.JButton();
         jbtnVoltar = new javax.swing.JButton();
         jbtnCriarAula = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Nome do Curso");
 
@@ -107,7 +110,7 @@ public class TelaGerenciarCursos extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jScrollPane1)
-                            .addGap(96, 96, 96)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbtnAdicionar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -164,6 +167,7 @@ public class TelaGerenciarCursos extends javax.swing.JFrame {
 
         Model.Curso novoCurso = new Model.Curso(nome, descricao);
         cursoController.adicionarCurso(novoCurso);
+        cursoController.salvarCursos();
         carregarCursos();
 
         JOptionPane.showMessageDialog(this, "Curso adicionado com sucesso!");
@@ -187,6 +191,7 @@ public class TelaGerenciarCursos extends javax.swing.JFrame {
         }
 
         cursoController.editarCurso(index, novoNome, novaDescricao);
+        cursoController.salvarCursos();
         carregarCursos();
 
         JOptionPane.showMessageDialog(this, "Curso editado com sucesso!");
@@ -200,6 +205,7 @@ public class TelaGerenciarCursos extends javax.swing.JFrame {
         }
 
         cursoController.removerCurso(index);
+        cursoController.salvarCursos();
         carregarCursos();
 
         JOptionPane.showMessageDialog(this, "Curso removido com sucesso!");
@@ -207,14 +213,14 @@ public class TelaGerenciarCursos extends javax.swing.JFrame {
 
     private void jbtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVoltarActionPerformed
         this.dispose();
-        new TelaInicial(usuarioLogado, cursoController).setVisible(true);
+        new TelaInicial(usuarioLogado, cursoController, usuarioController).setVisible(true);
     }//GEN-LAST:event_jbtnVoltarActionPerformed
 
     private void jbtnCriarAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCriarAulaActionPerformed
         int index = jlstCursos.getSelectedIndex(); 
         if (index >= 0) {
             Model.Curso cursoSelecionado = cursoController.getCursos().get(index);
-            new TelaCriarAula(usuarioLogado, cursoSelecionado, cursoController).setVisible(true);
+            new TelaCriarAula(usuarioLogado, cursoSelecionado, cursoController, usuarioController).setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um curso.");

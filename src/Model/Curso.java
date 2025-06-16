@@ -19,7 +19,6 @@ public class Curso {
         this.aulas.add(aula);
     }
     
-    //getters e setters
     public void setNome(String nome) {
         this.nome = nome;
     }
