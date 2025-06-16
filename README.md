@@ -13,25 +13,45 @@ Este projeto é um sistema desktop desenvolvido em **Java (Swing)** para auxilia
 
 ## 🧱 Estrutura do Projeto
 E-Learning/
+
 ├── Controller/
+
 │ ├── CursoController.java
+
 │ └── UsuarioController.java
+
 ├── Model/
+
 │ ├── Aluno.java
+
 │ ├── Aula.java
+
 │ ├── Curso.java
+
 │ └── Usuario.java
+
 ├── Util/
+
 │ └── PersistenciaJson.java
+
 ├── View/
+
 │ ├── TelaBase.java
+
 │ ├── TelaLogin.java
+
 │ ├── TelaInicial.java
+
 │ ├── TelaCursos.java
+
 │ ├── TelaListaAulas.java
+
 │ ├── TelaCriarAula.java
+
 │ ├── TelaGerenciarCursos.java
+
 │ └── TelaCriaUsuario.java
+
 └── Main.java
 
 
