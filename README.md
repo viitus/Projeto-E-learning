@@ -74,5 +74,6 @@ E-Learning/
 
 4. Os arquivos de persistência serão lidos e carregados automaticamente a partir de cursos.json e usuarios.json.
 
-👨‍💻 Autor
+## 👨‍💻 Autor
+
 Desenvolvido por Victor Dias Frota como parte do aprendizado em desenvolvimento Java e sistemas de gerenciamento educacional.
