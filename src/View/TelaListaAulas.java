@@ -59,11 +59,14 @@ public class TelaListaAulas extends javax.swing.JFrame {
 
         jbtnAcessar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbtnAcessar.setText("Acessar");
+        jbtnAcessar.setAlignmentY(0.6F);
         jbtnAcessar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnAcessarActionPerformed(evt);
             }
         });
+
+        jScrollPane1.setAlignmentY(0.6F);
 
         jlstAulas.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -73,35 +76,36 @@ public class TelaListaAulas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jlstAulas);
 
         jlbDescricao.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jlbDescricao.setText("jLabel1");
+        jlbDescricao.setText("Descrição do Curso");
+        jlbDescricao.setAlignmentY(0.6F);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnVoltar)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlbDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jbtnVoltar)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(227, 227, 227)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jbtnAcessar)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jlbDescricao))))
-                .addContainerGap(305, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(270, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jbtnVoltar)
-                .addGap(40, 40, 40)
+                .addGap(129, 129, 129)
                 .addComponent(jlbDescricao)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtnAcessar)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
 
         pack();
