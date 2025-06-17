@@ -26,6 +26,8 @@ public class TelaListaAulas extends javax.swing.JFrame {
     }
 
     private void carregarAulas() {
+        jlbDescricao.setText(cursoSelecionado.getDescricao());
+        
         DefaultListModel<String> model = new DefaultListModel<>();
         for (Aula aula : cursoSelecionado.getAulas()) {
             model.addElement(aula.getTitulo());
@@ -41,6 +43,7 @@ public class TelaListaAulas extends javax.swing.JFrame {
         jbtnAcessar = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jlstAulas = new javax.swing.JList<>();
+        jlbDescricao = new javax.swing.JLabel();
 
         setLocation(new java.awt.Point(300, 200));
         setLocationByPlatform(true);
@@ -69,6 +72,9 @@ public class TelaListaAulas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jlstAulas);
 
+        jlbDescricao.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlbDescricao.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,20 +84,24 @@ public class TelaListaAulas extends javax.swing.JFrame {
                     .addComponent(jbtnVoltar)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jbtnAcessar)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jbtnAcessar)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jlbDescricao))))
+                .addContainerGap(305, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jbtnVoltar)
+                .addGap(40, 40, 40)
+                .addComponent(jlbDescricao)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtnAcessar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,6 +153,7 @@ public class TelaListaAulas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jbtnAcessar;
     private javax.swing.JButton jbtnVoltar;
+    private javax.swing.JLabel jlbDescricao;
     private javax.swing.JList<String> jlstAulas;
     // End of variables declaration//GEN-END:variables
 }
