@@ -27,31 +27,34 @@ public class TelaAula extends javax.swing.JFrame {
     }
     
     private void carregarDadosAula() {
+        jlCursoSelecionado.setText(cursoSelecionado.getNome());
         jlblTituloAula.setText(aulaSelecionada.getTitulo());
         jtxtConteudo.setText(aulaSelecionada.getConteudo());
-        jtxtConteudo.setEditable(false); // Apenas leitura
+        if (usuarioLogado.getTipo().equals("aluno")){
+            jtxtConteudo.setEditable(false); // Apenas leitura
+        }else{
+            jtxtConteudo.setEditable(true);
+        }
+        
     }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jlblTituloAula = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jbtnVoltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtxtConteudo = new javax.swing.JTextArea();
-        jbtnVoltar = new javax.swing.JButton();
+        jlblTituloAula = new javax.swing.JLabel();
+        jlCursoSelecionado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
         setResizable(false);
         setSize(new java.awt.Dimension(600, 400));
 
-        jlblTituloAula.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jlblTituloAula.setText("Aula");
-
-        jtxtConteudo.setColumns(20);
-        jtxtConteudo.setRows(5);
-        jScrollPane1.setViewportView(jtxtConteudo);
+        jPanel1.setBackground(new java.awt.Color(229, 168, 0));
 
         jbtnVoltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbtnVoltar.setText("Voltar");
@@ -61,29 +64,57 @@ public class TelaAula extends javax.swing.JFrame {
             }
         });
 
+        jtxtConteudo.setColumns(20);
+        jtxtConteudo.setRows(5);
+        jScrollPane1.setViewportView(jtxtConteudo);
+
+        jlblTituloAula.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jlblTituloAula.setForeground(new java.awt.Color(30, 30, 30));
+        jlblTituloAula.setText("Aula");
+
+        jlCursoSelecionado.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jlCursoSelecionado.setForeground(new java.awt.Color(30, 30, 30));
+        jlCursoSelecionado.setText("Curso");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jbtnVoltar)
+                .addContainerGap(871, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
+                    .addComponent(jlblTituloAula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlCursoSelecionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jbtnVoltar)
+                .addGap(74, 74, 74)
+                .addComponent(jlCursoSelecionado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlblTituloAula)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(108, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jbtnVoltar)
-                .addGap(0, 719, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(175, 175, 175)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlblTituloAula)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jbtnVoltar)
-                .addGap(88, 88, 88)
-                .addComponent(jlblTituloAula)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -118,8 +149,10 @@ public class TelaAula extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnVoltar;
+    private javax.swing.JLabel jlCursoSelecionado;
     private javax.swing.JLabel jlblTituloAula;
     private javax.swing.JTextArea jtxtConteudo;
     // End of variables declaration//GEN-END:variables

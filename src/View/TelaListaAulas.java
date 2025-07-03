@@ -26,6 +26,7 @@ public class TelaListaAulas extends javax.swing.JFrame {
     }
 
     private void carregarAulas() {
+        jLcurso.setText(cursoSelecionado.getNome());
         jlbDescricao.setText(cursoSelecionado.getDescricao());
         
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -39,15 +40,19 @@ public class TelaListaAulas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jbtnVoltar = new javax.swing.JButton();
         jbtnAcessar = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jlstAulas = new javax.swing.JList<>();
         jlbDescricao = new javax.swing.JLabel();
+        jLcurso = new javax.swing.JLabel();
 
         setLocation(new java.awt.Point(300, 200));
         setLocationByPlatform(true);
         setSize(new java.awt.Dimension(600, 400));
+
+        jPanel1.setBackground(new java.awt.Color(229, 168, 0));
 
         jbtnVoltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbtnVoltar.setText("Voltar");
@@ -58,6 +63,7 @@ public class TelaListaAulas extends javax.swing.JFrame {
         });
 
         jbtnAcessar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jbtnAcessar.setForeground(new java.awt.Color(30, 30, 30));
         jbtnAcessar.setText("Acessar");
         jbtnAcessar.setAlignmentY(0.6F);
         jbtnAcessar.addActionListener(new java.awt.event.ActionListener() {
@@ -68,6 +74,7 @@ public class TelaListaAulas extends javax.swing.JFrame {
 
         jScrollPane1.setAlignmentY(0.6F);
 
+        jlstAulas.setForeground(new java.awt.Color(30, 30, 30));
         jlstAulas.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -76,36 +83,60 @@ public class TelaListaAulas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jlstAulas);
 
         jlbDescricao.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlbDescricao.setForeground(new java.awt.Color(30, 30, 30));
         jlbDescricao.setText("Descrição do Curso");
         jlbDescricao.setAlignmentY(0.6F);
+
+        jLcurso.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLcurso.setForeground(new java.awt.Color(30, 30, 30));
+        jLcurso.setText("Curso");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLcurso, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnAcessar))
+                .addContainerGap(140, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jbtnVoltar)
+                    .addContainerGap(713, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(jLcurso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlbDescricao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbtnAcessar)
+                .addContainerGap(99, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jbtnVoltar)
+                    .addContainerGap(558, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlbDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jbtnVoltar)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(227, 227, 227)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jbtnAcessar)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(270, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jbtnVoltar)
-                .addGap(129, 129, 129)
-                .addComponent(jlbDescricao)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtnAcessar)
-                .addContainerGap(161, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -154,6 +185,8 @@ public class TelaListaAulas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLcurso;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jbtnAcessar;
     private javax.swing.JButton jbtnVoltar;
